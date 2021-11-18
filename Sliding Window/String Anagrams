@@ -1,0 +1,57 @@
+String Anagrams
+Given a string and a pattern, find all anagrams of the pattern in the given string.
+
+Every anagram is a permutation of a string. As we know, when we are not allowed to repeat characters while finding permutations of a string, we get N!N! permutations (or anagrams) of a string having NN characters. For example, here are the six anagrams of the string “abc”:
+
+abc
+acb
+bac
+bca
+cab
+cba
+Write a function to return a list of starting indices of the anagrams of the pattern in the given string.
+
+Example 1:
+
+Input: String="ppqp", Pattern="pq"
+Output: [1, 2]
+Explanation: The two anagrams of the pattern in the given string are "pq" and "qp".
+Example 2:
+
+Input: String="abbcabc", Pattern="abc"
+Output: [2, 3, 4]
+Explanation: The three anagrams of the pattern in the given string are "bca", "cab", and "abc". *
+using namespace std;
+
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+class StringAnagrams {
+ public:
+  static vector<int> findStringAnagrams(const string &str, const string &pattern) {
+    vector<int> resultIndices;
+    int start = 0;
+    int end = 0;
+    vector<int> v1(26,0);
+    vector<int> v2(26,0);
+    for(auto p : pattern){
+      v1[p - 'a']++;
+    }
+    while(end < str.size()){
+      v2[str[end] - 'a']++;
+
+      if(v1 == v2){
+        resultIndices.push_back(start);
+      }
+      if(end - start + 1 == pattern.size()){
+        v2[str[start] - 'a']--;
+        start++;
+      }
+      end++;
+    }
+    return resultIndices;
+  }
+};
+//TC : O(n) SC : O(1)
