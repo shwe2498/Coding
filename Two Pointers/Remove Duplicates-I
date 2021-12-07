@@ -1,0 +1,44 @@
+Problem Statement#
+Given an array of sorted numbers, remove all duplicates from it. You should not use any extra space; after removing the duplicates in-place return the length of the subarray that has no duplicate in it.
+
+Example 1:
+
+Input: [2, 3, 3, 3, 6, 9, 9]
+Output: 4
+Explanation: The first four elements after removing the duplicates will be [2, 3, 6, 9].
+Example 2:
+
+Input: [2, 2, 2, 11]
+Output: 2
+Explanation: The first two elements after removing the duplicates will be [2, 11].
+
+using namespace std;
+
+#include <iostream>
+#include <vector>
+
+class RemoveDuplicates {
+ public:
+  static int remove(vector<int>& arr) {
+    // TC : O(n*n) SC : O(1)
+    /*int count = arr.size();
+    for(int i = 0; i < arr.size(); i++){
+      for(int j = i + 1; j < arr.size(); j++){
+        if(arr[i] == arr[j]){
+          count--;
+        }
+      }
+    }
+    return count + 1;*/
+    
+    //TC : O(n) SC : O(1)
+    int count = 1;
+    if(arr.size() == 0) return 0;
+    for(int i = 0; i < arr.size() - 1; i++){
+      if(arr[i] != arr[i+1]){
+        count++;
+      }
+    }
+    return count;
+  }
+};
