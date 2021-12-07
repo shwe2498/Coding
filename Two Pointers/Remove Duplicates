@@ -40,5 +40,15 @@ class RemoveDuplicates {
       }
     }
     return count;
+    
+    int nextNonDuplicate = 1; 
+    for (int i = 1; i < arr.size(); i++) {
+      if (arr[nextNonDuplicate - 1] != arr[i]) {
+        arr[nextNonDuplicate] = arr[i];
+        nextNonDuplicate++;
+      }
+    }
+
+    return nextNonDuplicate;
   }
 };
